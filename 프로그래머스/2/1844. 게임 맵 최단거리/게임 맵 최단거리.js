@@ -1,36 +1,35 @@
 function solution(maps) {
-    let answer = 1;
-    let visited = maps;
+    let answer = -1;
+    let moveCount = 0;
     let queue = [];
-    const dx = [-1, 1, 0, 0];
-    const dy = [0, 0, -1, 1];
-    const n = maps.length;
-    const m = maps[0].length;
+    let visited = [...maps];
+    const moveX = [1,-1,0,0];
+    const moveY = [0,0,1,-1];
+    const maxX = maps[0].length-1;
+    const maxY = maps.length-1;
     
-    queue.push([0, 0]);
+    queue.push([0,0]);
     visited[0][0] = 0;
-    
-    while(queue.length > 0) {
+    while(queue.length > 0){
+        moveCount++;
         let size = queue.length;
-        
-        for(let i = 0; i < size; i++) {
-            let [x, y] = queue.shift();
-            
-            for(let j = 0; j < 4; j++) {
-                let nx = x + dx[j];
-                let ny = y + dy[j];
+        for(let i=0; i<size; i++){
+            let [curX, curY] = queue.shift();
+            for(let k=0;k<4;k++){
+                let nextX = curX+moveX[k];
+                let nextY = curY+moveY[k];
                 
-                if(nx >= 0 && nx < n && ny >= 0 && ny < m && visited[nx][ny] === 1) {
-                    if(nx == n - 1 && ny == m - 1) {
-                        return ++answer;
+                if(nextX == maxX && nextY == maxY ) return ++moveCount;
+                
+                if(nextX <= maxX && nextX >= 0 && nextY <= maxY && nextY >= 0){
+                    if(visited[nextY][nextX]){
+                        queue.push([nextX, nextY]);
+                        visited[nextY][nextX] = 0;
                     }
-                    queue.push([nx, ny]);
-                    visited[nx][ny] = 0;
                 }
             }
         }
-        answer++;
     }
     
-    return -1;
+    return answer;
 }
