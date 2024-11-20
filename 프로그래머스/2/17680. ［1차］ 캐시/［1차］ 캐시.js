@@ -1,8 +1,8 @@
 function solution(cacheSize, cities) {
     var answer = 0;
     let cacheMemory = new Array(cacheSize);
-    let cacheHit = 1;
-    let cacheMiss = 5;
+    const cacheHit = 1;
+    const cacheMiss = 5;
     
     if(cacheSize===0) {
         return cacheMiss*cities.length;
