@@ -1,15 +1,15 @@
 function solution(people, limit) {
     var answer = 0;
-    //오름차순 정렬
-    let sortPeople = people.sort((a,b) => a-b);
-    let i = 0;
-    let k = sortPeople.length -1;
-    while(i <= k) {
-        if(sortPeople[i]+sortPeople[k] <= limit) {
+    people.sort((a,b)=>(b-a));
+    // console.log(people)
+    let i=0;
+    let k=people.length-1;
+    while(i<=k){
+        if(people[i]+people[k]<=limit){
             i++;
             k--;
         } else {
-            k--;
+            i++;
         }
         answer++;
     }
