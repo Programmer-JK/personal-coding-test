@@ -1,12 +1,11 @@
 function solution(s) {
     var answer = '';
-    
-    arr = s.split(' ');
-    
-    var arr2 = arr.map(e => e.charAt(0).toUpperCase()+e.slice(1).toLowerCase());
-    
-    answer = arr2.join(" ");
-    
-    
+    let arr = s.split(" ");
+    for(let i=0;i<arr.length;i++){
+        let Upper = arr[i].substr(0,1).toUpperCase();
+        let Lower = arr[i].substr(1).toLowerCase();
+        arr[i]=Upper+Lower;
+    }
+    answer = arr.join(" ");
     return answer;
 }
