@@ -1,14 +1,15 @@
 function solution(s){
     var answer = true;
-    var stack = [];
-    
-    for(var i=0;i<s.length;i++){
-        if (stack[stack.length - 1] === '(' && s[i] === ')') {
+    let stack = [];
+    if(s[0] === ")") return false;
+    stack.push(s[0]);
+    for(let i=1;i<s.length;i++){
+        if(s[i] === ")"){
             stack.pop();
         } else {
-            stack.push(s[i]);
+            stack.push(s[i])
         }
     }
 
-    return !stack.length;
+    return stack.length > 0 ? false : true;
 }
