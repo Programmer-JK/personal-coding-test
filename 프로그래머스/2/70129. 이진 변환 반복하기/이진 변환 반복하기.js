@@ -1,22 +1,20 @@
 function solution(s) {
-    var answer = [];
-    
-    var removeZeroCount = 0;
-    var removeZeroTime = 0;
-    
+    let answer = [];
+    let doCnt = 0;
+    let ReCnt = 0;
     while(s.length > 1) {
-        var result = [];
-        for(var i=0;i<s.length;i++){
-            if(s[i] == '1'){
-                result.push(s[i]);
+        let arr = s.split('');
+        let newArr = [];
+        for(let i=0;i<arr.length;i++) {
+            if(arr[i] == "0") {
+                ReCnt++;
             } else {
-                removeZeroCount++;
+                newArr.push(arr[i]);
             }
         }
-        removeZeroTime++;
-        s = result.length.toString(2);
+        s = newArr.length.toString(2);
+        // console.log(arr, newArr, s);
+        doCnt++;
     }
-    
-    answer = [removeZeroTime, removeZeroCount]
-    return answer;
+    return [doCnt, ReCnt];
 }
